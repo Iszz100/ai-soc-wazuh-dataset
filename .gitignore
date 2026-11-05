@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.log
+.env
+
+# Local environment and sensitive configuration
+configs/lab.env
+configs/*.env
+.env
+.env.*
+!.env.example
+configs/assets.json

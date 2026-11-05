@@ -1,0 +1,13 @@
+=== ATTACKER BEFORE ===
+2026-11-04T20:02:55 UTC
+=== TARGET ===
+2026-11-04T20:02:58 UTC
+                      Local time: Thu 2026-11-05 03:02:58 WIB
+                  Universal time: Wed 2026-11-04 20:02:58 UTC
+                        RTC time: Wed 2026-11-04 20:02:59
+                       Time zone: Asia/Jakarta (WIB, +0700)
+       System clock synchronized: yes
+systemd-timesyncd.service active: yes
+                 RTC in local TZ: no
+=== ATTACKER AFTER ===
+2026-11-04T20:02:58 UTC

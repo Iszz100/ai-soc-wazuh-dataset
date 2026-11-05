@@ -1,0 +1,13 @@
+# Nmap 7.98 scan initiated Thu Nov  5 02:00:57 2026 as: nmap -sT -sV -Pn -p 22,80,3000,8080 -oN logs/01-baseline-scan.txt 192.168.56.100
+Nmap scan report for 192.168.56.100
+Host is up (0.00086s latency).
+
+PORT     STATE  SERVICE    VERSION
+22/tcp   open   ssh        OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+80/tcp   closed http
+3000/tcp closed ppp
+8080/tcp closed http-proxy
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Nov  5 02:00:57 2026 -- 1 IP address (1 host up) scanned in 0.65 seconds
