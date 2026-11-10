@@ -12,3 +12,6 @@ configs/*.env
 .env.*
 !.env.example
 configs/assets.json
+wazuh-export/alerts.json
+datasets/normalized_alerts.jsonl
+datasets/correlated_alerts.jsonl

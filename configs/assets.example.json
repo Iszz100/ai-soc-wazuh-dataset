@@ -1,0 +1,27 @@
+{
+  "lab_name": "ai-soc-wazuh-dataset-lab",
+  "network": "192.168.56.0/24",
+  "assets": [
+    {
+      "name": "ubuntu-host-attacker",
+      "role": "attacker_cli",
+      "ip": "192.168.56.1",
+      "os": "Ubuntu 26.04",
+      "allowed": true
+    },
+    {
+      "name": "ubuntu18-agent-target",
+      "role": "monitored_target",
+      "ip": "192.168.56.100",
+      "os": "Ubuntu 18.04.6 LTS",
+      "wazuh_agent": true
+    },
+    {
+      "name": "wazuh-manager",
+      "role": "siem",
+      "ip": "REPLACE_WITH_WAZUH_MANAGER_IP",
+      "os": "Remote Wazuh Server",
+      "components": ["manager"]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "scenarios": {
+    "baseline_ssh_typo_success": {
+      "target_agent_id": "022",
+      "target_user": "ubuntu",
+      "source_ip": "192.168.56.1",
+      "allowed_rule_ids": [
+        "5503",
+        "5760",
+        "5715",
+        "5501"
+      ],
+      "allow_missing_source_ip_rule_ids": [
+        "5501"
+      ],
+      "window_seconds": 10,
+      "confidence": 0.8
+    }
+  }
+}

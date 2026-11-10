@@ -1,0 +1,42 @@
+{
+  "dataset_name": "ai-soc-wazuh-dataset",
+  "version": "v0.1.0",
+  "generated_at": "2026-11-10T10:53:33.029643Z",
+  "git_commit": "e964e747136696f2aecfd53aa46a5870cc824879",
+  "dataset_file": null,
+  "dataset_publication_status": "local_only_not_committed",
+  "publication_note": "Raw correlated Wazuh events are retained locally and excluded from GitHub to protect lab network information.",
+  "total_events": 9,
+  "label_distribution": {
+    "unlabeled": 4,
+    "benign": 5
+  },
+  "attack_type_distribution": {
+    "unknown": 4,
+    "benign": 5
+  },
+  "scenario_distribution": {
+    "unmatched": 4,
+    "baseline_ssh_typo_success": 5
+  },
+  "schema": "schemas/final_dataset.schema.json",
+  "ground_truth": "ground-truth/ground_truth.jsonl",
+  "lab_config": [
+    "configs/assets.example.json",
+    "configs/label_taxonomy.json",
+    "configs/mitre_mapping.json"
+  ],
+  "known_limitations": [
+    "dataset berasal dari lab tertutup",
+    "belum terdapat sampel malicious terverifikasi pada versi ini",
+    "versi ini memiliki 5 event benign terkonfirmasi dan 4 event belum terlabel",
+    "jumlah event masih terbatas dan belum mewakili variasi serangan dunia nyata",
+    "field source_ip dapat kosong jika alert tidak menyediakan IP eksplisit",
+    "mapping MITRE perlu review analis untuk skenario kompleks"
+  ],
+  "ethical_use": [
+    "hanya untuk edukasi, riset, dan pengembangan AI SOC legal",
+    "tidak untuk menyerang sistem publik",
+    "hapus data sensitif sebelum publikasi"
+  ]
+}
