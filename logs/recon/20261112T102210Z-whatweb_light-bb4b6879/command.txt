@@ -1,0 +1,1 @@
+whatweb -a 1 http://192.168.56.100:3000 --log-json=logs/recon/20261112T102210Z-whatweb_light-bb4b6879/whatweb.json

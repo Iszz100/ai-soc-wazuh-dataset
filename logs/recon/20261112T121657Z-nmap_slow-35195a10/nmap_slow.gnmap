@@ -1,0 +1,4 @@
+# Nmap 7.98 scan initiated Thu Nov 12 19:16:57 2026 as: nmap -Pn -T1 --scan-delay 500ms -p 22,80,443,3000,8080 -oA logs/recon/20261112T121657Z-nmap_slow-35195a10/nmap_slow 192.168.56.100
+Host: 192.168.56.100 ()	Status: Up
+Host: 192.168.56.100 ()	Ports: 22/open/tcp//ssh///, 80/closed/tcp//http///, 443/closed/tcp//https///, 3000/open/tcp//ppp///, 8080/closed/tcp//http-proxy///
+# Nmap done at Thu Nov 12 19:17:00 2026 -- 1 IP address (1 host up) scanned in 3.02 seconds

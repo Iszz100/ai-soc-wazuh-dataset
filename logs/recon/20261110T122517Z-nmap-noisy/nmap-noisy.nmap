@@ -1,0 +1,8 @@
+# Nmap 7.98 scan initiated Tue Nov 10 19:25:17 2026 as: nmap -Pn -T3 --max-retries 2 -p 1-1024 -oA logs/recon/20261110T122517Z-nmap-noisy/nmap-noisy 192.168.56.100
+Nmap scan report for 192.168.56.100
+Host is up (0.000046s latency).
+Not shown: 1023 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+# Nmap done at Tue Nov 10 19:25:18 2026 -- 1 IP address (1 host up) scanned in 0.53 seconds

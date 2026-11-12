@@ -1,0 +1,1 @@
+nmap -Pn --top-ports 20 -T2 192.168.56.100 -oA logs/recon/20261112T123511Z-nmap_light-9fe9f7f8/nmap_light

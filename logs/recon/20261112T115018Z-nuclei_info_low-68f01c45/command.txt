@@ -1,0 +1,1 @@
+nuclei -severity info,low -rate-limit 5 -jsonl -u http://192.168.56.100:3000 -o logs/recon/20261112T115018Z-nuclei_info_low-68f01c45/nuclei.jsonl

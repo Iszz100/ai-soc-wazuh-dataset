@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.98 scan initiated Thu Nov 12 19:15:21 2026 as: nmap -Pn -T1 -&#45;scan-delay 500ms -p 22,80,443,3000,8080 -oA logs/recon/20261112T121521Z-nmap_slow-a8a19331/nmap_slow 192.168.56.100 -->
+<nmaprun scanner="nmap" args="nmap -Pn -T1 -&#45;scan-delay 500ms -p 22,80,443,3000,8080 -oA logs/recon/20261112T121521Z-nmap_slow-a8a19331/nmap_slow 192.168.56.100" start="1794485721" startstr="Thu Nov 12 19:15:21 2026" version="7.98" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="5" services="22,80,443,3000,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1794485722" endtime="1794485724"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.56.100" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ppp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="197" rttvar="1646" to="500000"/>
+</host>
+<runstats><finished time="1794485724" timestr="Thu Nov 12 19:15:24 2026" summary="Nmap done at Thu Nov 12 19:15:24 2026; 1 IP address (1 host up) scanned in 3.02 seconds" elapsed="3.02" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

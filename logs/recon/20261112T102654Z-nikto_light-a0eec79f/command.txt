@@ -1,0 +1,1 @@
+perl /home/eunso/tools/nikto-2.6.1/program/nikto.pl -nointeractive -h http://192.168.56.100:3000 -output logs/recon/20261112T102654Z-nikto_light-a0eec79f/nikto.json -Format json

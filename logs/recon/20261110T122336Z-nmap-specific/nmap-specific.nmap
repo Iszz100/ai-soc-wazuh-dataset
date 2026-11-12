@@ -1,0 +1,12 @@
+# Nmap 7.98 scan initiated Tue Nov 10 19:23:36 2026 as: nmap -Pn -p 22,80,443,3000,8080 -oA logs/recon/20261110T122336Z-nmap-specific/nmap-specific 192.168.56.100
+Nmap scan report for 192.168.56.100
+Host is up (0.00022s latency).
+
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   closed http
+443/tcp  closed https
+3000/tcp open   ppp
+8080/tcp closed http-proxy
+
+# Nmap done at Tue Nov 10 19:23:36 2026 -- 1 IP address (1 host up) scanned in 0.52 seconds

@@ -1,0 +1,1 @@
+nmap -Pn -sV --version-light -T2 -p 22,80,443,3000,8080 192.168.56.100 -oA logs/recon/20261112T121212Z-nmap_service-796f8caa/nmap_service
