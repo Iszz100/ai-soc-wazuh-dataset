@@ -15,3 +15,7 @@ configs/assets.json
 wazuh-export/alerts.json
 datasets/normalized_alerts.jsonl
 datasets/correlated_alerts.jsonl
+
+# Raw Wazuh exports - local only
+/wazuh-export/**/*.json
+/wazuh-export/**/*.jsonl
