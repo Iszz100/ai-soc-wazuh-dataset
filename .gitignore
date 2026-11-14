@@ -19,3 +19,9 @@ datasets/correlated_alerts.jsonl
 # Raw Wazuh exports - local only
 /wazuh-export/**/*.json
 /wazuh-export/**/*.jsonl
+
+# Local-only raw Bab 5 evidence
+/wazuh-export/
+/logs/auth/
+/logs/web/
+/reports/chapter5/*.jsonl
