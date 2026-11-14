@@ -1,0 +1,21 @@
+<group name="local,juice_shop,web_attack,">
+
+  <!-- JUICE SHOP SQL INJECTION DETECTION -->
+
+  <rule id="111154" level="10">
+    <decoded_as>json</decoded_as>
+
+    <field name="log" type="pcre2">(?i)SQLITE_ERROR.*near.*dummy.*syntax error</field>
+
+    <description>
+      Juice Shop: Possible SQL Injection indicated by SQLite syntax error
+    </description>
+
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+
+    <group>juice_shop,web_attack,sqli,application_error,</group>
+  </rule>
+
+</group>
