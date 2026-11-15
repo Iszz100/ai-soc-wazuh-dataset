@@ -1,0 +1,34 @@
+# Payload Catalog Summary
+
+Total payload: 22
+
+## By Category
+- username_dummy: 3
+- benign_path: 4
+- user_agent_dummy: 2
+- sql_injection_pattern_dummy: 2
+- xss_pattern_dummy: 2
+- path_pattern_dummy: 3
+- command_pattern_dummy_non_destructive: 2
+- password_dummy: 2
+- suspicious_path_dummy: 2
+
+## By Creator
+- manual: 3
+- ollama_local: 19
+
+## By Expected Label
+- auth_attack: 1
+- benign: 2
+- sql_injection: 2
+- xss: 2
+- path_pattern: 3
+- command: 2
+- username: 2
+- password: 2
+- user_agent: 1
+- benign_path: 3
+- suspicious_path: 2
+
+## By Safety Status
+- approved: 22

@@ -1,0 +1,145 @@
+{
+
+  "payloads": [
+    {
+      "payload_id": 1,
+      "category": "sql_injection_pattern_dummy",
+      "payload": "SELECT * FROM users WHERE username = 'dummy_user' AND password = 'dummy_pass' --",
+      "risk_level": "medium",
+      "expected_label": "sql_injection"
+    },
+    {
+      "payload_id": 2,
+      "category": "sql_injection_pattern_dummy",
+      "payload": "UPDATE users SET password = 'dummy_pass' WHERE username = 'dummy_user' --",
+      "risk_level": "medium",
+      "expected_label": "sql_injection"
+    },
+    {
+      "payload_id": 3,
+      "category": "xss_pattern_dummy",
+      "payload": "<span onclick='alert('dummy')'>Click me</span>",
+      "risk_level": "medium",
+      "expected_label": "xss"
+    },
+    {
+      "payload_id": 4,
+      "category": "xss_pattern_dummy",
+      "payload": "<script>alert('dummy')</script>",
+      "risk_level": "medium",
+      "expected_label": "xss"
+    },
+    {
+      "payload_id": 5,
+      "category": "path_pattern_dummy",
+      "payload": "/temp/dummy_file.html",
+      "risk_level": "low",
+      "expected_label": "path_pattern"
+    },
+    {
+      "payload_id": 6,
+      "category": "path_pattern_dummy",
+      "payload": "/public/dummy_index.html",
+      "risk_level": "low",
+      "expected_label": "path_pattern"
+    },
+    {
+      "payload_id": 7,
+      "category": "path_pattern_dummy",
+      "payload": "/user/dummy_user_profile.html",
+      "risk_level": "low",
+      "expected_label": "path_pattern"
+    },
+    {
+      "payload_id": 8,
+      "category": "command_pattern_dummy_non_destructive",
+      "payload": "ls -l /tmp/dummy_dir",
+      "risk_level": "low",
+      "expected_label": "command"
+    },
+    {
+      "payload_id": 9,
+      "category": "command_pattern_dummy_non_destructive",
+      "payload": "cat /tmp/dummy_file",
+      "risk_level": "low",
+      "expected_label": "command"
+    },
+    {
+      "payload_id": 10,
+      "category": "username_dummy",
+      "payload": "user001",
+      "risk_level": "low",
+      "expected_label": "username"
+    },
+    {
+      "payload_id": 11,
+      "category": "password_dummy",
+      "payload": "Pass123!",
+      "risk_level": "medium",
+      "expected_label": "password"
+    },
+    {
+      "payload_id": 12,
+      "category": "user_agent_dummy",
+      "payload": "Mozilla/5.0 (dummy) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
+      "risk_level": "low",
+      "expected_label": "user_agent"
+    },
+    {
+      "payload_id": 13,
+      "category": "benign_path",
+      "payload": "/public/index.html",
+      "risk_level": "low",
+      "expected_label": "benign_path"
+    },
+    {
+      "payload_id": 14,
+      "category": "benign_path",
+      "payload": "/images/dummy_logo.png",
+      "risk_level": "low",
+      "expected_label": "benign_path"
+    },
+    {
+      "payload_id": 15,
+      "category": "benign_path",
+      "payload": "/css/dummy_style.css",
+      "risk_level": "low",
+      "expected_label": "benign_path"
+    },
+    {
+      "payload_id": 16,
+      "category": "suspicious_path_dummy",
+      "payload": "/admin/.tmp",
+      "risk_level": "high",
+      "expected_label": "suspicious_path"
+    },
+    {
+      "payload_id": 17,
+      "category": "suspicious_path_dummy",
+      "payload": "/secret/dummy_config",
+      "risk_level": "high",
+      "expected_label": "suspicious_path"
+    },
+    {
+      "payload_id": 18,
+      "category": "suspicious_path_dummy",
+      "payload": "/backup/dummy_backup",
+      "risk_level": "high",
+      "expected_label": "suspicious_path"
+    },
+    {
+      "payload_id": 19,
+      "category": "username_dummy",
+      "payload": "dummy_user",
+      "risk_level": "low",
+      "expected_label": "username"
+    },
+    {
+      "payload_id": 20,
+      "category": "password_dummy",
+      "payload": "dummy_pass",
+      "risk_level": "low",
+      "expected_label": "password"
+    }
+  ]
+}
