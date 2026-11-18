@@ -25,3 +25,9 @@ datasets/correlated_alerts.jsonl
 /logs/auth/
 /logs/web/
 /reports/chapter5/*.jsonl
+runs/
+logs/
+wazuh-export/chapter8/*.jsonl
+datasets/chapter8_candidate.jsonl
+configs/orchestrator.json
+configs/orchestrator_baseline.json
