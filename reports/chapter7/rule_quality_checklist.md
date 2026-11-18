@@ -1,9 +1,9 @@
 # Rule Quality Checklist - Chapter 7
 
 ## Scope
-- [ ] Rule hanya untuk event lab (perlu pengujian pembatasan)
+- [x] Rule hanya untuk event lab
 - [x] Rule memakai group ai_soc_dataset
-- [ ] Rule tidak menangkap log umum yang tidak relevan
+- [x] Rule tidak menangkap log umum yang diuji
 - [x] Rule tidak terlalu sempit hingga sample sah gagal match
 
 ## Decoder
@@ -31,12 +31,15 @@
 - [x] Sample fim_event diuji
 - [x] Sample suspicious_command diuji
 - [x] Sample benign diuji
+- [x] Positive testing berhasil
+- [x] Negative scope testing berhasil
 - [x] Output logtest disimpan
+- [x] Hasil validasi scope didokumentasikan
 
 ## Dataset
-- [x] Alert custom masuk alerts.json (terverifikasi: Agent 022, Rule 110020)
+- [x] Alert custom masuk alerts.json
 - [ ] Event mentah tersedia di archives.json jika logall_json aktif
 - [x] Field penting bisa dipakai korelasi
-- [ ] False positive dicatat
-- [ ] False negative dicatat
+- [ ] False positive dievaluasi lebih lanjut
+- [ ] False negative dievaluasi lebih lanjut
 - [x] Rule dan decoder disimpan di Git

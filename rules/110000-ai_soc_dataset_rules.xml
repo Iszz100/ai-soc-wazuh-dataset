@@ -2,6 +2,7 @@
 
   <rule id="110000" level="3">
     <decoded_as>ai-soc-pentest</decoded_as>
+    <field name="safety_status">^lab_only$</field>
     <description>AI SOC dataset custom pentest event</description>
     <group>ai_soc_dataset,custom_pentest,</group>
   </rule>
@@ -13,7 +14,7 @@
     <group>ai_soc_dataset,recon,</group>
     <mitre>
       <id>T1595</id>
-      </mitre>
+    </mitre>
   </rule>
 
   <rule id="110020" level="7">
