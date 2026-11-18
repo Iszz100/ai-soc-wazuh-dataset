@@ -34,7 +34,7 @@
 - [x] Output logtest disimpan
 
 ## Dataset
-- [ ] Alert custom masuk alerts.json (belum diverifikasi)
+- [x] Alert custom masuk alerts.json (terverifikasi: Agent 022, Rule 110020)
 - [ ] Event mentah tersedia di archives.json jika logall_json aktif
 - [x] Field penting bisa dipakai korelasi
 - [ ] False positive dicatat
