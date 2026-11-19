@@ -31,3 +31,16 @@ wazuh-export/chapter8/*.jsonl
 datasets/chapter8_candidate.jsonl
 configs/orchestrator.json
 configs/orchestrator_baseline.json
+
+# AI SOC publication safety
+*.pyc
+*.secret
+*.key
+*.pem
+*.crt
+*.db
+wazuh-passwords.txt
+credentials.json
+token.json
+datasets/raw/
+wazuh-export/raw/

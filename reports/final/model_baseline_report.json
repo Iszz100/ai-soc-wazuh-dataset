@@ -1,0 +1,38 @@
+{
+  "dataset": "datasets/final/dataset.parquet",
+  "records_used": 6,
+  "label_distribution": {
+    "malicious": 5,
+    "benign": 1
+  },
+  "supervised_models": {
+    "logistic_regression": {
+      "status": "skipped",
+      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
+    },
+    "random_forest": {
+      "status": "skipped",
+      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
+    },
+    "hist_gradient_boosting": {
+      "status": "skipped",
+      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
+    }
+  },
+  "isolation_forest": {
+    "status": "trained_exploratory",
+    "records": 6,
+    "score_min": -0.21866653103170275,
+    "score_max": 0.1447047755157569,
+    "anomaly_count": 2,
+    "normal_count": 4,
+    "note": "Anomaly baseline only; small sample and not a production classifier."
+  },
+  "rule_based_baseline": {
+    "status": "not_evaluable",
+    "rule": "rule_level >= 7 -> malicious else benign",
+    "records": 6,
+    "records_with_rule_level": 0,
+    "note": "Labeled Ground Truth records have no Wazuh rule_level. Performance metrics are not claimed."
+  }
+}
