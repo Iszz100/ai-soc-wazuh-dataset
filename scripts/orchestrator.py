@@ -235,8 +235,6 @@ def main():
             "command": command
         }
 
-        write_jsonl(run_dir / "ground_truth.jsonl", gt)
-
         if args.dry_run:
             result = {
                 "start_time": now_utc(),
@@ -265,6 +263,23 @@ def main():
                     run_dir / "stderr.log",
                     f"\nTIMEOUT: {command}\n"
                 )
+
+        # Record the actual execution outcome in ground truth.
+        gt["timestamp"] = result.get("start_time", gt["timestamp"])
+        gt["execution_start_time"] = result.get("start_time")
+        gt["execution_end_time"] = result.get("end_time")
+        gt["return_code"] = result.get("return_code")
+
+        if args.dry_run:
+            gt["success_status"] = "dry_run"
+        elif result.get("return_code") == 0:
+            gt["success_status"] = "success"
+        elif result.get("return_code") == 124:
+            gt["success_status"] = "timeout"
+        else:
+            gt["success_status"] = "failed"
+
+        write_jsonl(run_dir / "ground_truth.jsonl", gt)
 
         scenario_result = {
             "index": index,

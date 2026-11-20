@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "checks": {
+    "target_in_lab_cidr": true,
+    "target_ping": true,
+    "wazuh_ping": true,
+    "target_ssh_22": true,
+    "target_web": true
+  },
+  "note": "Dashboard export workflow; no Wazuh API authentication."
+}
