@@ -1,38 +1,73 @@
 {
   "dataset": "datasets/final/dataset.parquet",
-  "records_used": 6,
+  "dataset_records": 111,
+  "records_used": 20,
   "label_distribution": {
-    "malicious": 5,
+    "malicious": 19,
     "benign": 1
   },
   "supervised_models": {
-    "logistic_regression": {
-      "status": "skipped",
-      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
-    },
-    "random_forest": {
-      "status": "skipped",
-      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
-    },
-    "hist_gradient_boosting": {
-      "status": "skipped",
-      "reason": "Skipped: each class needs at least two records for a meaningful stratified split."
+    "status": "skipped",
+    "reason": "Minimal dua sampel per kelas diperlukan untuk supervised train/test split.",
+    "label_distribution": {
+      "malicious": 19,
+      "benign": 1
     }
   },
   "isolation_forest": {
-    "status": "trained_exploratory",
-    "records": 6,
-    "score_min": -0.21866653103170275,
-    "score_max": 0.1447047755157569,
-    "anomaly_count": 2,
-    "normal_count": 4,
-    "note": "Anomaly baseline only; small sample and not a production classifier."
+    "status": "trained",
+    "records": 111,
+    "score_min": -0.3213006384660938,
+    "score_max": 0.1645788989012687,
+    "anomaly_count": 24,
+    "normal_count": 87,
+    "note": "Isolation Forest merupakan anomaly baseline, bukan classifier final."
   },
   "rule_based_baseline": {
-    "status": "not_evaluable",
+    "status": "evaluated",
     "rule": "rule_level >= 7 -> malicious else benign",
-    "records": 6,
-    "records_with_rule_level": 0,
-    "note": "Labeled Ground Truth records have no Wazuh rule_level. Performance metrics are not claimed."
+    "labels": [
+      "benign",
+      "malicious"
+    ],
+    "confusion_matrix": [
+      [
+        1,
+        0
+      ],
+      [
+        18,
+        1
+      ]
+    ],
+    "classification_report": {
+      "benign": {
+        "precision": 0.05263157894736842,
+        "recall": 1.0,
+        "f1-score": 0.1,
+        "support": 1.0
+      },
+      "malicious": {
+        "precision": 1.0,
+        "recall": 0.05263157894736842,
+        "f1-score": 0.1,
+        "support": 19.0
+      },
+      "accuracy": 0.1,
+      "macro avg": {
+        "precision": 0.5263157894736842,
+        "recall": 0.5263157894736842,
+        "f1-score": 0.1,
+        "support": 20.0
+      },
+      "weighted avg": {
+        "precision": 0.9526315789473685,
+        "recall": 0.1,
+        "f1-score": 0.1,
+        "support": 20.0
+      }
+    },
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.9474
   }
 }

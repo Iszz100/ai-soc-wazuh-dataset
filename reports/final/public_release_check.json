@@ -2,21 +2,6 @@
   "safe_to_publish": true,
   "results": [
     {
-      "path": "README.md",
-      "exists": true,
-      "findings": []
-    },
-    {
-      "path": "LICENSE",
-      "exists": true,
-      "findings": []
-    },
-    {
-      "path": "DISCLAIMER.md",
-      "exists": true,
-      "findings": []
-    },
-    {
       "path": "datasets/final/dataset.jsonl",
       "exists": true,
       "findings": []
@@ -37,12 +22,17 @@
       "findings": []
     },
     {
-      "path": "datasets/final/schema.json",
+      "path": "README.md",
       "exists": true,
       "findings": []
     },
     {
-      "path": "reports/final/dataset_quality_report.md",
+      "path": "LICENSE",
+      "exists": true,
+      "findings": []
+    },
+    {
+      "path": "DISCLAIMER.md",
       "exists": true,
       "findings": []
     },
@@ -52,17 +42,12 @@
       "findings": []
     },
     {
+      "path": "reports/final/dataset_quality_report.md",
+      "exists": true,
+      "findings": []
+    },
+    {
       "path": "reports/final/AI_ASSISTED_SOC_REPORT.md",
-      "exists": true,
-      "findings": []
-    },
-    {
-      "path": "reports/final/CEH_SOC_FINAL_CHECKLIST.md",
-      "exists": true,
-      "findings": []
-    },
-    {
-      "path": "reports/final/FINAL_SUMMARY.md",
       "exists": true,
       "findings": []
     }
