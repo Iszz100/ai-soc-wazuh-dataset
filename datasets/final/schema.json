@@ -1,4 +1,7 @@
 {
+  "dataset_name": "ai-soc-wazuh-dataset",
+  "version": "v0.1.0",
+  "record_count": 111,
   "fields": {
     "agent_name": [
       "str"
@@ -12,14 +15,27 @@
     "confidence": [
       "float"
     ],
+    "correlation_evidence": [
+      "list"
+    ],
+    "correlation_missing_fields": [
+      "list"
+    ],
     "correlation_status": [
       "str"
     ],
     "destination_ip": [
-      "NoneType",
+      "null",
+      "str"
+    ],
+    "destination_port": [
+      "null",
       "str"
     ],
     "event_id": [
+      "str"
+    ],
+    "event_source": [
       "str"
     ],
     "feature_event_count_agent": [
@@ -53,7 +69,7 @@
       "int"
     ],
     "feature_status_code": [
-      "NoneType"
+      "null"
     ],
     "feature_user_agent_category": [
       "str"
@@ -67,6 +83,9 @@
     "label": [
       "str"
     ],
+    "location": [
+      "str"
+    ],
     "mitre_tactic": [
       "str"
     ],
@@ -77,14 +96,22 @@
       "str"
     ],
     "rule_description": [
+      "null",
       "str"
     ],
+    "rule_groups": [
+      "list"
+    ],
     "rule_id": [
+      "null",
       "str"
     ],
     "rule_level": [
-      "NoneType",
-      "int"
+      "int",
+      "null"
+    ],
+    "rule_mitre_id": [
+      "list"
     ],
     "run_id": [
       "str"
@@ -93,7 +120,7 @@
       "str"
     ],
     "source_ip": [
-      "NoneType"
+      "null"
     ],
     "source_of_truth": [
       "str"
@@ -101,8 +128,5 @@
     "timestamp": [
       "str"
     ]
-  },
-  "dataset_version": "v0.1.0",
-  "generated_at": "2026-11-19T12:17:51.089766Z",
-  "git_commit": "b9a1933a2b01282934d7ad7c883fd1f334a9f87b"
+  }
 }

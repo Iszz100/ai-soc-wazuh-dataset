@@ -2,14 +2,22 @@
 import argparse
 import json
 import subprocess
-from datetime import datetime, timezone
 from pathlib import Path
+from datetime import datetime, timezone
+from collections import Counter
 
 import pandas as pd
 
 
-def now_utc():
-    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+def read_jsonl(path):
+    with Path(path).open(encoding="utf-8") as f:
+        return [json.loads(x) for x in f if x.strip()]
+
+
+def write_jsonl(path, rows):
+    with Path(path).open("w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
 def git_commit():
@@ -22,145 +30,92 @@ def git_commit():
         return "unknown"
 
 
-def read_jsonl(path):
-    rows = []
-
-    with Path(path).open(
-        "r", encoding="utf-8", errors="replace"
-    ) as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                rows.append(json.loads(line))
-
-    return rows
-
-
-def infer_schema(rows):
-    fields = {}
-
-    for row in rows:
-        for key, value in row.items():
-            fields.setdefault(key, set()).add(
-                type(value).__name__
-            )
-
-    return {
-        "fields": {
-            key: sorted(list(types))
-            for key, types in sorted(fields.items())
-        }
-    }
-
-
 def main():
-    parser = argparse.ArgumentParser(
-        description="Export final AI SOC dataset"
-    )
-
-    parser.add_argument(
-        "--input",
-        default="datasets/final/dataset_final.jsonl"
-    )
-    parser.add_argument(
-        "--output-dir",
-        default="datasets/final"
-    )
-    parser.add_argument(
-        "--version",
-        default="v0.1.0"
-    )
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", default="datasets/final/dataset_final.jsonl")
+    parser.add_argument("--output-dir", default="datasets/final")
+    parser.add_argument("--version", default="v0.1.0")
     args = parser.parse_args()
 
     rows = read_jsonl(args.input)
 
     if not rows:
-        raise SystemExit("ERROR: Dataset kosong.")
+        raise SystemExit("Dataset final kosong. Export dibatalkan.")
 
-    outdir = Path(args.output_dir)
-    outdir.mkdir(parents=True, exist_ok=True)
+    out = Path(args.output_dir)
+    out.mkdir(parents=True, exist_ok=True)
 
     df = pd.DataFrame(rows)
 
-    jsonl_out = outdir / "dataset.jsonl"
-    csv_out = outdir / "dataset.csv"
-    parquet_out = outdir / "dataset.parquet"
-    schema_out = outdir / "schema.json"
-    readme_out = outdir / "README_dataset.md"
-    card_out = outdir / "DATASET_CARD.json"
+    jsonl_out = out / "dataset.jsonl"
+    csv_out = out / "dataset.csv"
+    parquet_out = out / "dataset.parquet"
+    schema_out = out / "schema.json"
+    card_out = out / "DATASET_CARD.json"
+    readme_out = out / "README_dataset.md"
 
-    df.to_json(
-        jsonl_out,
-        orient="records",
-        lines=True,
-        force_ascii=False
-    )
-
+    write_jsonl(jsonl_out, rows)
     df.to_csv(csv_out, index=False)
-    df.to_parquet(parquet_out, index=False)
+    df.to_parquet(parquet_out, index=False, engine="pyarrow")
 
-    generated = now_utc()
-    commit = git_commit()
+    fields = {}
 
-    schema = infer_schema(rows)
-    schema["dataset_version"] = args.version
-    schema["generated_at"] = generated
-    schema["git_commit"] = commit
+    for row in rows:
+        for key, value in row.items():
+            fields.setdefault(key, set()).add(
+                type(value).__name__ if value is not None else "null"
+            )
+
+    schema = {
+        "dataset_name": "ai-soc-wazuh-dataset",
+        "version": args.version,
+        "record_count": len(rows),
+        "fields": {
+            k: sorted(v) for k, v in sorted(fields.items())
+        }
+    }
 
     schema_out.write_text(
         json.dumps(schema, indent=2, ensure_ascii=False),
         encoding="utf-8"
     )
 
-    label_dist = {
-        str(k): int(v)
-        for k, v in df["binary_label"].value_counts(
-            dropna=False
-        ).items()
-    }
+    labels = Counter(r.get("binary_label", "unlabeled") for r in rows)
+    classes = Counter(r.get("multi_class_label", "unknown") for r in rows)
 
-    class_dist = {
-        str(k): int(v)
-        for k, v in df["multi_class_label"].value_counts(
-            dropna=False
-        ).items()
-    }
+    generated = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     card = {
         "dataset_name": "ai-soc-wazuh-dataset",
         "version": args.version,
         "generated_at": generated,
-        "git_commit": commit,
-        "source": "Wazuh lab evidence pack + ground truth",
-        "total_records": len(df),
-        "label_distribution": label_dist,
-        "multi_class_distribution": class_dist,
-        "formats": {
-            "jsonl": str(jsonl_out),
-            "csv": str(csv_out),
-            "parquet": str(parquet_out),
-            "schema": str(schema_out)
-        },
+        "git_commit": git_commit(),
+        "purpose": "Educational defensive AI SOC dataset",
+        "record_count": len(rows),
+        "sources": [
+            "Ground Truth JSONL",
+            "Wazuh Dashboard CSV export",
+            "Wazuh archive sample when available"
+        ],
+        "binary_label_distribution": dict(labels),
+        "multi_class_distribution": dict(classes),
         "intended_use": [
-            "AI SOC training",
-            "ML baseline",
-            "LLM-assisted SOC experiment",
-            "CEH/SOC lab portfolio"
+            "Defensive AI SOC research",
+            "Security event classification",
+            "Educational lab analysis"
         ],
         "not_for": [
-            "attacking public systems",
-            "training offensive malware generation",
-            "production deployment without validation"
+            "Attacking public systems",
+            "Offensive malware generation",
+            "Production deployment without validation"
         ],
         "known_limitations": [
-            "lab-generated dataset",
-            "only six records have ground truth labels",
-            "no successful ground truth to Wazuh correlation",
-            "sanitized IP and sensitive fields",
-            "class balance depends on scenario mix"
-        ],
-        "license": "CC BY 4.0"
+            "Lab-generated dataset",
+            "Some Dashboard exports omit IP and port fields",
+            "Some correlations require analyst review",
+            "Unmatched alerts remain unlabeled",
+            "Class balance depends on scenario mix"
+        ]
     }
 
     card_out.write_text(
@@ -177,44 +132,41 @@ def main():
 {generated}
 
 ## Git Commit
-{commit}
+{card['git_commit']}
+
+## Records
+{len(rows)}
 
 ## Source
-Dataset dibuat dari evidence pack lab Wazuh:
-- Ground truth JSONL
-- Wazuh alerts
-- Archive sample
-- Script execution log
-- Correlation pipeline
+- Ground Truth JSONL
+- Wazuh Dashboard export
+- Archive sample when available
+- Correlation and preprocessing pipeline
+
+## Binary Label Distribution
+{json.dumps(dict(labels), indent=2)}
+
+## Multi-class Distribution
+{json.dumps(dict(classes), indent=2)}
 
 ## Files
-- `dataset.jsonl` untuk LLM dan pipeline streaming
-- `dataset.csv` untuk eksplorasi cepat
-- `dataset.parquet` untuk efisiensi analitik
-- `schema.json` untuk struktur field
-- `DATASET_CARD.json` untuk metadata dataset
-
-## Label Distribution
-{json.dumps(label_dist, indent=2, ensure_ascii=False)}
-
-## Multi-Class Distribution
-{json.dumps(class_dist, indent=2, ensure_ascii=False)}
+- dataset.jsonl: LLM and streaming pipeline
+- dataset.csv: exploration and spreadsheet
+- dataset.parquet: efficient analytics
+- schema.json: field contract
+- DATASET_CARD.json: dataset metadata
 
 ## Ethical Use
-Dataset ini hanya untuk edukasi, riset defensif,
-AI SOC, dan lab legal. Tidak untuk menyerang sistem publik.
+Educational, defensive research, and legal lab use only.
 
 ## Known Limitations
-- Dataset berasal dari lab tertutup.
-- Hanya enam record memiliki Ground Truth.
-- Belum ada korelasi Ground Truth dan Wazuh yang berhasil.
-- Distribusi kelas belum mewakili lingkungan produksi.
-- Data perlu review sebelum publikasi eksternal.
+- Some events do not contain IP or port information.
+- Unmatched alerts remain unlabeled.
+- Low-confidence correlations require analyst review.
 
 ## Leakage Warning
-Jangan gunakan `run_id`, `scenario_id`, `payload_id`,
-`expected_label`, `label`, `binary_label`, atau
-`multi_class_label` sebagai fitur input training langsung.
+Do not use run_id, scenario_id, payload_id, expected_label,
+label, binary_label, or multi_class_label as direct training features.
 """
 
     readme_out.write_text(readme, encoding="utf-8")
@@ -227,7 +179,7 @@ Jangan gunakan `run_id`, `scenario_id`, `payload_id`,
         "schema": str(schema_out),
         "dataset_card": str(card_out),
         "readme": str(readme_out)
-    }, indent=2, ensure_ascii=False))
+    }, indent=2))
 
 
 if __name__ == "__main__":

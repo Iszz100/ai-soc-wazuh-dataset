@@ -2,22 +2,19 @@
 import json
 from pathlib import Path
 
-
 def read_jsonl_stream(path):
     """
     Membaca JSONL baris demi baris.
     Cocok untuk alerts.json, archives.json,
-    ground_truth.jsonl.
+    dan ground_truth.jsonl.
     """
     p = Path(path)
-
     if not p.exists():
         return
 
     with p.open("r", encoding="utf-8", errors="replace") as f:
         for line_no, line in enumerate(f, start=1):
             line = line.strip()
-
             if not line:
                 continue
 
@@ -30,7 +27,6 @@ def read_jsonl_stream(path):
                     "_error": str(e),
                     "_raw": line[:500]
                 }
-
 
 def write_jsonl(path, records):
     p = Path(path)
